@@ -1,0 +1,47 @@
+- Récupérer tous les albums = 
+    SELECT * FROM albums;
+
+- Récupérer tous les albums dont le titre contient "Great" =
+    SELECT * FROM albums
+    WHERE Title LIKE '%Great%';
+
+- Donner le nombre total d'albums contenus dans la base (sans regarder les id bien sûr) =
+    SELECT MAX(AlbumId)
+    FROM albums;
+
+- Supprimer tous les albums dont le nom contient "music" =
+    DELETE FROM albums 
+    WHERE Title LIKE '%music%';
+
+- Récupérer tous les albums écrits par AC/DC =
+    SELECT * FROM albums
+    WHERE ArtistId = 1;
+
+- Récupérer tous les titres des albums de AC/DC =
+    SELECT Name FROM tracks
+    WHERE Composer LIKE '%AC/DC%';
+
+- Récupérer la liste des titres de l'album "Let There Be Rock" =
+    SELECT Name FROM tracks
+    WHERE AlbumId = 4;
+   
+- Afficher le prix de cet album ainsi que sa durée totale = 
+    Prix:
+      SELECT count(UnitPrice) FROM tracks
+      WHERE AlbumId = 4;
+    Durée en Millisecondes:
+      SELECT SUM(Milliseconds) FROM tracks
+      WHERE AlbumId = 4;
+
+- Afficher le coût de l'intégralité de la discographie de "Deep Purple"
+    SELECT count(UnitPrice) FROM tracks
+    WHERE AlbumId = 58;
+
+- Créer l'album de ton artiste favori en base, en renseignant correctement les trois tables albums, artists et tracks =
+
+    Artiste:
+      INSERT INTO artists (ArtistId, Name) VALUES (276, 'Vald');
+    Album:
+      INSERT INTO albums (AlbumId, Title, ArtistId) VALUES (348, 'XEU', 276);
+    Tracks:
+      INSERT INTO tracks (TrackId, Name, AlbumId, MediaTypeld, Genreld, Composer, Milliliseconds, Bytes, UnitPrice) VALUES (3504, 'Désaccordé', 348, 1, 17, 'Vald', 343719, 11170334, 0.99);

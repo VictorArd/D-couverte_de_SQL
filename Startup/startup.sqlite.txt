@@ -1,0 +1,12 @@
+-Premiere chose à faire dans sqlite3 (console)-
+
+CREATE TABLE `blog` (
+`id` INTEGER PRIMARY KEY AUTOINCREMENT, `user` TEXT,
+`article` TEXT,
+`category` TEXT,
+`tag` TEXT
+);
+
+-Ajout d'un user-
+
+INSERT INTO blog (user, artcile, category, tag) VALUES ('Damien', 'Je suis chez THP!', 'Moussaillon', 'Avancé');

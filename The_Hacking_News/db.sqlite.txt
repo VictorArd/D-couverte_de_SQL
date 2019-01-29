@@ -1,0 +1,39 @@
+CREATE TABLE `utilisateurs` (
+`id` INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+`user` TEXT
+);
+
+CREATE TABLE `utilisateurs` (
+`id` INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+`iduser` INTEGER NOT NULL,
+`url` TEXT,
+FOREIGN KEY(iduser) REFERENCES utilisateurs(id)
+);
+
+
+CREATE TABLE `post` (
+`id` INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+`iduser` INTEGER NOT NULL,
+`url` TEXT,
+FOREIGN KEY(iduser) REFERENCES utilisateurs(id)
+);
+
+CREATE TABLE `commentpost` (
+`id` INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+`iduser` INTEGER NOT NULL,
+`comment` TEXT,
+`postid` INTEGER NOT NULL,
+FOREIGN KEY(iduser) REFERENCES utilisateurs(id),
+FOREIGN KEY(postid) REFERENCES post(id)
+);
+
+CREATE TABLE `commenttocomment` (
+`id` INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+`iduser` INTEGER NOT NULL,
+`commenttocomment` TEXT,
+`postid` INTEGER NOT NULL,
+`commentid` INTEGER NOT NULL,
+FOREIGN KEY(iduser) REFERENCES utilisateurs(id),
+FOREIGN KEY(postid) REFERENCES post(id),
+FOREIGN KEY(commentid) REFERENCES commentpost(id)
+);
